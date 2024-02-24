@@ -1,0 +1,102 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import FacebookIcon from './icons/FacebookIcon.astro'
+import GitHubIcon from './icons/GitHubIcon.astro'
+import InstagramIcon from './icons/InstagramIcon.astro'
+import ChangeTheme from './react/ChangeTheme.tsx';
+
+const navLinks = [
+	{
+		href: '/blog',
+		text: 'Blog'
+	},
+	{
+		href: '/about',
+		text: 'About'
+	},
+	{
+		href: '/events',
+		text: 'Events'
+	},
+	{
+		href: '/teams',
+		text: 'Teams'
+	}
+];
+
+const socialLinks = [
+	{
+		href: 'https://m.webtoo.ls/@astro',
+		icon: FacebookIcon,
+		alt: 'Facebook'
+	},
+	{
+		href: '/',
+		icon: GitHubIcon,
+		alt: 'GitHub'
+	},
+	{
+		href: '/',
+		icon: InstagramIcon,
+		alt: 'Instagram'
+	}
+];
+---
+
+<header class="w-full flex justify-center items-center text-primary">
+	<div class="w-full max-w-6xl py-2 px-6 flex justify-between items-center">
+		<nav class="flex items-center justify-start gap-10">
+			<a href="/">
+				<h1 class="font-bold text-3xl flex flex-col leading-none text-center text-primary-title">
+					<span>
+						ACM
+					</span>
+					<span class="mt-[-6px]">
+						UNSA
+					</span>
+					<!-- <img src="/img/ACM_logo.webp" alt="logo acm" class="w-12 h-12 rounded-full"/> -->
+				</h1>
+			</a>
+			<div class="md:flex gap-2 hidden">
+				{
+					navLinks.map((link, index) => (
+						<HeaderLink href={link.href}>
+							{link.text}
+						</HeaderLink>
+					))
+				}
+			</div>
+		</nav>
+		<div class="flex gap-2 items-center">
+			{
+				socialLinks.map((link) => (
+					<a href={link.href} class="p-1 rounded-md hover:bg-accent">
+						<link.icon class="w-8 h-8"/>
+						<span class="sr-only">{link.alt}</span>
+					</a>
+				))
+			}
+			<ChangeTheme client:load/>
+		</div>
+	</div>
+
+</header>
+
+<script is:inline>
+  const theme = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  })();
+
+  if (theme === "light") {
+    document.documentElement.classList.remove("dark");
+  } else {
+    document.documentElement.classList.add("dark");
+  }
+  window.localStorage.setItem("theme", theme);
+</script>

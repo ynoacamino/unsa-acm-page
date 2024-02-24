@@ -1,0 +1,31 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+import Initial from '../components/index/Initial.astro'
+import Present from '../components/index/Present.astro'
+import Gallery from '../components/index/Gallery.astro'
+import Events from '../components/index/Events.astro'
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body class="bg-background flex flex-col justify-start items-center">
+		<Header />
+		<main class="w-full max-w-6xl flex flex-col justify-start items-center">
+			<Initial />
+			<Present />
+			<Gallery />
+			<Events />
+		</main>
+		<!-- <Footer /> -->
+	</body>
+</html>
+<style>
+</style>
+

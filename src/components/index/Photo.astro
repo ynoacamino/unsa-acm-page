@@ -1,0 +1,35 @@
+---
+const IMG_URL = 'https://res.cloudinary.com/dazt6g3o1/image/upload/v1708744991/n4lc1zkyxzzef01fhvtq.png'
+
+interface Props {
+  title: string
+  description: string
+  img?: string
+  alt ?: string
+  direction ?: 'left' | 'right'
+}
+
+const { title, description, img, alt, direction } = Astro.props as Props
+
+if (direction) direction === 'left';
+
+---
+
+
+<div
+  class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4 text-primary items-center w-full px-6"
+>
+  <img
+    class="rounded-md aspect-video w-full max-w-lg"
+    src={img || IMG_URL}
+    alt={alt || 'image'}
+  />
+  <div class="w-full flex flex-col gap-2 max-w-lg">
+    <h1 class="font-bold text-4xl text-primary-title">
+      {title}
+    </h1>
+    <div class="text-xl md:text-2xl">
+      {description}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+---
+import Photo from '@/components/index/Photo.astro';
+
+const photoProps = {
+  title: 'About us',
+  description: "We are a chapter club of the Association for Computing Machinery organization. Our goal is to expose passionate people. We are a chapter club of the Association for Computing Machinery organization"
+}
+---
+
+<div class="flex flex-col gap-20 my-40">
+  <Photo
+    title={photoProps.title}
+    description={photoProps.description}
+  />
+  <Photo
+    title={photoProps.title}
+    description={photoProps.description}
+  />
+  <Photo
+    title={photoProps.title}
+    description={photoProps.description}
+  />
+</div>
